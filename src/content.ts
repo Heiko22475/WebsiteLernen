@@ -1,7 +1,105 @@
+export type Theme = {
+  colors: {
+    brand: string
+    brandDark: string
+    brandSoft: string
+    accent: string
+    accentDark: string
+    accentSoft: string
+  }
+}
+
+export type Content = {
+  site: {
+    name: string
+    category: string
+    address: string
+    phone: string
+    phoneHref: string
+  }
+  nav: { label: string; href: string }[]
+  header: { callLabel: string }
+  hero: {
+    kicker: string
+    claim: string
+    subheading: string
+    routeUrl: string
+    hoursKicker: string
+    hoursNote: string
+    imageUrl?: string
+    imageAlt?: string
+    ctas: {
+      callLabel: string
+      routeLabel: string
+      bookingLabel: string
+    }
+  }
+  services: {
+    kicker: string
+    title: string
+    subtitle: string
+    items: { title: string; description: string }[]
+  }
+  prices: {
+    kicker: string
+    title: string
+    subtitle: string
+    tableHeaders: { service: string; price: string }
+    items: { service: string; price: string }[]
+    note: string
+  }
+  gallery: {
+    kicker: string
+    title: string
+    subtitle: string
+    items: { label: string; imageUrl?: string; imageAlt?: string }[]
+    note: string
+  }
+  about: {
+    kicker: string
+    title: string
+    subtitle: string
+    text: string
+  }
+  qualities: {
+    title: string
+    description: string
+    icon: 'spark' | 'precision' | 'comfort'
+  }[]
+  contact: {
+    kicker: string
+    title: string
+    subtitle: string
+    openingHoursNote: string
+    routeUrl: string
+    mapEmbedUrl: string
+    labels: { address: string; phone: string; hours: string }
+    actions: { routeLabel: string }
+    socialLabels: {
+      instagram: string
+      facebook: string
+      whatsapp: string
+      whatsappPlaceholder: string
+    }
+    socials: { instagram: string; facebook: string; whatsapp: string }
+  }
+  faq: {
+    kicker: string
+    title: string
+    subtitle: string
+    items: { question: string; answer: string }[]
+  }
+  footer: {
+    legal: { label: string; href: string }[]
+    note: string
+  }
+  theme: Theme
+}
+
 const address = 'Badestube 6A, 36251 Bad Hersfeld'
 const addressEncoded = 'Badestube%206A%2C%2036251%20Bad%20Hersfeld'
 
-export const content = {
+export const content: Content = {
   site: {
     name: '77 Style Salon',
     category: 'Barbershop / Herrenfriseur',
@@ -17,9 +115,7 @@ export const content = {
     { label: 'Kontakt', href: '#kontakt' },
     { label: 'FAQ', href: '#faq' },
   ],
-  header: {
-    callLabel: 'Anrufen',
-  },
+  header: { callLabel: 'Anrufen' },
   hero: {
     kicker: 'Bad Hersfeld',
     claim: 'Moderne Cuts, klare Kanten und entspannter Style.',
@@ -28,6 +124,8 @@ export const content = {
     routeUrl: `https://www.google.com/maps/dir/?api=1&destination=${addressEncoded}`,
     hoursKicker: 'TODO',
     hoursNote: 'TODO: Oeffnungszeiten folgen.',
+    imageUrl: '',
+    imageAlt: '',
     ctas: {
       callLabel: 'Anrufen',
       routeLabel: 'Route',
@@ -39,40 +137,19 @@ export const content = {
     title: 'Leistungen',
     subtitle: 'Klare Leistungen, fair kommuniziert und schnell verstanden.',
     items: [
-      {
-        title: 'Haarschnitt',
-        description: 'Praezise Schnitte, sauber verblendet, exakt auf deinen Stil.',
-      },
-      {
-        title: 'Bartpflege',
-        description: 'Konturen, Form und Pflege fuer einen klaren Look.',
-      },
-      {
-        title: 'Styling',
-        description: 'Finish mit passenden Produkten fuer den Alltag.',
-      },
-      {
-        title: 'Konturen',
-        description: 'Exakte Linien und saubere Kanten an Haar und Bart.',
-      },
-      {
-        title: 'Waschen',
-        description: 'Gruendliche Reinigung und frisches Gefuehl.',
-      },
-      {
-        title: 'Beratung',
-        description: 'Individuelle Empfehlung fuer Schnitt, Bart und Pflege.',
-      },
+      { title: 'Haarschnitt', description: 'Praezise Schnitte, sauber verblendet, exakt auf deinen Stil.' },
+      { title: 'Bartpflege', description: 'Konturen, Form und Pflege fuer einen klaren Look.' },
+      { title: 'Styling', description: 'Finish mit passenden Produkten fuer den Alltag.' },
+      { title: 'Konturen', description: 'Exakte Linien und saubere Kanten an Haar und Bart.' },
+      { title: 'Waschen', description: 'Gruendliche Reinigung und frisches Gefuehl.' },
+      { title: 'Beratung', description: 'Individuelle Empfehlung fuer Schnitt, Bart und Pflege.' },
     ],
   },
   prices: {
     kicker: 'Preise',
     title: 'Preise',
     subtitle: 'Transparenz ist uns wichtig, die Details folgen.',
-    tableHeaders: {
-      service: 'Leistung',
-      price: 'Preis',
-    },
+    tableHeaders: { service: 'Leistung', price: 'Preis' },
     items: [
       { service: 'Haarschnitt', price: 'TODO' },
       { service: 'Bartpflege', price: 'TODO' },
@@ -88,14 +165,14 @@ export const content = {
     title: 'Galerie',
     subtitle: 'Eindruecke aus dem Salon. Bilder folgen als Platzhalter.',
     items: [
-      { label: 'Look 01' },
-      { label: 'Look 02' },
-      { label: 'Look 03' },
-      { label: 'Look 04' },
-      { label: 'Look 05' },
-      { label: 'Look 06' },
-      { label: 'Look 07' },
-      { label: 'Look 08' },
+      { label: 'Look 01', imageUrl: '', imageAlt: '' },
+      { label: 'Look 02', imageUrl: '', imageAlt: '' },
+      { label: 'Look 03', imageUrl: '', imageAlt: '' },
+      { label: 'Look 04', imageUrl: '', imageAlt: '' },
+      { label: 'Look 05', imageUrl: '', imageAlt: '' },
+      { label: 'Look 06', imageUrl: '', imageAlt: '' },
+      { label: 'Look 07', imageUrl: '', imageAlt: '' },
+      { label: 'Look 08', imageUrl: '', imageAlt: '' },
     ],
     note: 'TODO: Galerie-Bilder austauschen.',
   },
@@ -107,21 +184,9 @@ export const content = {
       '77 Style Salon steht fuer einen modernen Herrenfriseur mit Fokus auf Praezision, entspannte Atmosphaere und saubere Linien. Wir nehmen uns Zeit, damit jeder Look stimmt.',
   },
   qualities: [
-    {
-      title: 'Sauberkeit',
-      description: 'Hygienische Arbeitsweise, klare Standards, sauberes Werkzeug.',
-      icon: 'spark',
-    },
-    {
-      title: 'Praezision',
-      description: 'Schnittfuehrung und Details, die den Unterschied machen.',
-      icon: 'precision',
-    },
-    {
-      title: 'Atmosphaere',
-      description: 'Ruhiges Ambiente fuer einen entspannten Termin.',
-      icon: 'comfort',
-    },
+    { title: 'Sauberkeit', description: 'Hygienische Arbeitsweise, klare Standards, sauberes Werkzeug.', icon: 'spark' },
+    { title: 'Praezision', description: 'Schnittfuehrung und Details, die den Unterschied machen.', icon: 'precision' },
+    { title: 'Atmosphaere', description: 'Ruhiges Ambiente fuer einen entspannten Termin.', icon: 'comfort' },
   ],
   contact: {
     kicker: 'Kontakt',
@@ -130,14 +195,8 @@ export const content = {
     openingHoursNote: 'TODO: Oeffnungszeiten ergaenzen.',
     routeUrl: `https://www.google.com/maps/dir/?api=1&destination=${addressEncoded}`,
     mapEmbedUrl: `https://www.google.com/maps?q=${addressEncoded}&output=embed`,
-    labels: {
-      address: 'Adresse',
-      phone: 'Telefon',
-      hours: 'Oeffnungszeiten',
-    },
-    actions: {
-      routeLabel: 'Route',
-    },
+    labels: { address: 'Adresse', phone: 'Telefon', hours: 'Oeffnungszeiten' },
+    actions: { routeLabel: 'Route' },
     socialLabels: {
       instagram: 'Instagram',
       facebook: 'Facebook',
@@ -157,23 +216,19 @@ export const content = {
     items: [
       {
         question: 'Brauche ich einen Termin?',
-        answer:
-          'Empfohlen, damit wir genug Zeit fuer dich einplanen koennen. Kurzfristig gerne per Telefon.',
+        answer: 'Empfohlen, damit wir genug Zeit fuer dich einplanen koennen. Kurzfristig gerne per Telefon.',
       },
       {
         question: 'Welche Zahlarten werden akzeptiert?',
-        answer:
-          'Bitte direkt im Salon erfragen. TODO: genaue Zahlarten ergaenzen.',
+        answer: 'Bitte direkt im Salon erfragen. TODO: genaue Zahlarten ergaenzen.',
       },
       {
         question: 'Gibt es Parkmoeglichkeiten?',
-        answer:
-          'In der Umgebung gibt es oeffentliche Parkmoeglichkeiten. TODO: Details bestaetigen.',
+        answer: 'In der Umgebung gibt es oeffentliche Parkmoeglichkeiten. TODO: Details bestaetigen.',
       },
       {
         question: 'Wie kurzfristig kann ich absagen?',
-        answer:
-          'Bitte so frueh wie moeglich Bescheid geben, damit wir Termine neu vergeben koennen.',
+        answer: 'Bitte so frueh wie moeglich Bescheid geben, damit wir Termine neu vergeben koennen.',
       },
     ],
   },
@@ -184,6 +239,14 @@ export const content = {
     ],
     note: 'TODO: Rechtstexte verlinken.',
   },
-} as const
-
-export type Content = typeof content
+  theme: {
+    colors: {
+      brand: '#E6C97A',
+      brandDark: '#D5B861',
+      brandSoft: '#F5E8C7',
+      accent: '#121212',
+      accentDark: '#0A0A0A',
+      accentSoft: '#2A2A2A',
+    },
+  },
+}

@@ -15,11 +15,19 @@ export default function Gallery({ gallery }: Props) {
           {gallery.items.map((item, index) => (
             <div
               key={`${item.label}-${index}`}
-              className="flex aspect-[4/3] items-center justify-center rounded-2xl border border-brand-dark/40 bg-brand-soft"
+              className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-brand-dark/40 bg-brand-soft"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent/60">
-                {item.label}
-              </span>
+              {item.imageUrl ? (
+                <img
+                  src={item.imageUrl}
+                  alt={item.imageAlt || item.label}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent/60">
+                  {item.label}
+                </span>
+              )}
             </div>
           ))}
         </div>

@@ -5,14 +5,14 @@ export default {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#E6C97A',
-          dark: '#D5B861',
-          soft: '#F5E8C7',
+          DEFAULT: 'var(--color-brand)',
+          dark: 'var(--color-brand-dark)',
+          soft: 'var(--color-brand-soft)',
         },
         accent: {
-          DEFAULT: '#121212',
-          dark: '#0A0A0A',
-          soft: '#2A2A2A',
+          DEFAULT: 'var(--color-accent)',
+          dark: 'var(--color-accent-dark)',
+          soft: 'var(--color-accent-soft)',
         },
       },
       fontFamily: {

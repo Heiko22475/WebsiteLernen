@@ -48,7 +48,17 @@ export default function Hero({ site, hero }: Props) {
           </div>
         </div>
         <div className="relative">
-          <div className="aspect-[4/5] rounded-3xl border border-brand-dark/40 bg-white shadow-soft" />
+          <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-brand-dark/40 shadow-soft">
+            {hero.imageUrl ? (
+              <img
+                src={hero.imageUrl}
+                alt={hero.imageAlt || site.name}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="h-full w-full bg-white" />
+            )}
+          </div>
           <div className="absolute -bottom-6 -left-6 rounded-2xl border border-accent/20 bg-accent px-6 py-4 text-brand-soft shadow-soft">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">
               {hero.hoursKicker}
